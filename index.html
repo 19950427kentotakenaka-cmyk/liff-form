@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>求人診断フォーム</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <p>フォームに移動しています。少々お待ちください...</p>
+  <script>
+    // ★ステップ1で取得したLIFF ID（URLの末尾の英数字）
+    const LIFF_ID = "https://docs.google.com/forms/d/e/1FAIpQLSeuc6MrwU3k2fIl5vy6uS8GBhi2GjrmGJWWk5PnljVUQvYqdg/viewform?usp=pp_url&entry.1527497068=LINE_ID_PLACEHOLDER"; 
+    
+    // ★上の「3」で取得したフォームURL（末尾のプレースホルダーの手前まで）
+    const BASE_FORM_URL = "https://docs.google.com/forms/d/e/xxx/viewform?entry.1234567=";
+
+    liff.init({ liffId: LIFF_ID }).then(() => {
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      } else {
+        liff.getProfile().then(profile => {
+          const userId = profile.userId; // ユーザーのLINE IDを取得
+          // フォームのURLの後ろにLINE IDをくっつけて自動遷移
+          window.location.href = BASE_FORM_URL + encodeURIComponent(userId);
+        });
+      }
+    }).catch(err => { console.error(err); });
+  </script>
+</body>
+</html>

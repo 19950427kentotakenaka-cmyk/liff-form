@@ -9,10 +9,10 @@
   <p>フォームに移動しています。少々お待ちください...</p>
   <script>
     // ★ステップ1で取得したLIFF ID（URLの末尾の英数字）
-    const LIFF_ID = "https://docs.google.com/forms/d/e/1FAIpQLSeuc6MrwU3k2fIl5vy6uS8GBhi2GjrmGJWWk5PnljVUQvYqdg/viewform?usp=pp_url&entry.1527497068=LINE_ID_PLACEHOLDER"; 
+    const LIFF_ID = "2010160555-Wv0xDrLf"; 
     
     // ★上の「3」で取得したフォームURL（末尾のプレースホルダーの手前まで）
-    const BASE_FORM_URL = "https://docs.google.com/forms/d/e/xxx/viewform?entry.1234567=";
+    const BASE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeuc6MrwU3k2fIl5vy6uS8GBhi2GjrmGJWWk5PnljVUQvYqdg/viewform?usp=pp_url&entry.1527497068=";
 
     liff.init({ liffId: LIFF_ID }).then(() => {
       if (!liff.isLoggedIn()) {

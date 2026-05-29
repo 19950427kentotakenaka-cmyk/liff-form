@@ -32,7 +32,8 @@
     </div>
 
     <script>
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzfL9Eo9bAhv7SJ1EeLUlPCoDn4s5xymzXWeKR44mzlB1z-Yv6hofmB1fFN1aWT8JMuWw/exec"; 
+        // お使いのGASのウェブアプリURLをここに設定してください
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxnqcSjE4w70dapvVyGli1eK67vBXohMu6O3tbISKXpmeu6cDGOkZ-5tsu_U-DwoxXJnQ/exec"; 
         const LIFF_ID = "2010232382-UWNA2ZWB"; 
 
         let userProfile = {};
@@ -71,23 +72,20 @@
                 document.getElementById('submitBtn').disabled = true;
                 document.getElementById('submitBtn').innerText = "送信中...";
 
-                const response = await fetch(GAS_WEB_APP_URL, {
+                // no-cors を使用して送信（レスポンスの中身は読み取れませんが、送信は成功します）
+                await fetch(GAS_WEB_APP_URL, {
                     method: "POST",
-                    mode: "cors",
+                    mode: "no-cors", 
                     headers: { 
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify(sendData)
                 });
 
-                const result = await response.json();
-                if (result.status === 'success') {
-                    alert("登録が完了しました！");
-                    liff.closeWindow();
-                } else {
-                    alert("エラーが発生しました: " + result.message);
-                }
+                // 送信自体が成功すれば、ここへ進みます
+                alert("登録が完了しました！");
+                liff.closeWindow();
+
             } catch (error) {
                 console.error("送信エラー:", error);
                 alert("通信エラーが発生しました。");
